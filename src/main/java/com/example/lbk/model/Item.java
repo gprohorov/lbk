@@ -24,6 +24,12 @@ public class Item {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    public Item(String id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

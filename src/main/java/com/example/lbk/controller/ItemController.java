@@ -8,8 +8,7 @@ package com.example.lbk.controller;
 */
 
 import com.example.lbk.model.Item;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -19,6 +18,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
+@RequestMapping("/api/items")
 public class ItemController {
     private List<Item> items = Stream.of(
             new Item("1","Item1", "desc1", LocalDateTime.now(), null),
@@ -26,9 +26,14 @@ public class ItemController {
             new Item("3","Item2", "desc3", LocalDateTime.now(), null)
     ).collect(Collectors.toList());
 
-    @RequestMapping("/api/items/getall")
+    @RequestMapping("/getall")
     List<Item> getAll(){
         return items;
+    }
+    @PostMapping("/create")
+    Item  createItem(@RequestBody Item item){
+         item.setCreatedAt(LocalDateTime.now());
+        return item;
     }
 
 
