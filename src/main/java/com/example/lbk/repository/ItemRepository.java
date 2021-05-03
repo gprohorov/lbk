@@ -14,8 +14,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ItemRepository extends MongoRepository<Item, String>, IItemCrud {
+public interface ItemRepository extends MongoRepository<Item, String>{
     Item findFirstByDescription(String  description);
-    List<Item> findAllByUpdatedAtExists();
+    List<Item> findAllByUpdatedAtNotNull();
 
 }
