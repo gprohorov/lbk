@@ -8,9 +8,13 @@ package com.example.lbk.controller;
 */
 
 import com.example.lbk.model.Item;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.management.relation.Role;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,6 +33,18 @@ public class ItemController {
     @RequestMapping("/api/items/getall")
     List<Item> getAll(){
         return items;
+
+    }
+
+    @RequestMapping("/api/items/getone")
+    Item getOne(){
+        return items.get(0);
+    }
+    @PostMapping("/api/items/create")
+    Item create(@RequestBody Item item){
+        item.setCreatedAt(LocalDateTime.now());
+        items.add(item);
+        return item;
     }
 
 
