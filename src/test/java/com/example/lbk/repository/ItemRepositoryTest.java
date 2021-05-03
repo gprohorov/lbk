@@ -27,7 +27,7 @@ public class ItemRepositoryTest {
 
 
     @BeforeEach
-    public void dataSetup() {
+    public void setUp() {
         Item item1 = new Item("11",
                 "item11",
                 "desc11",
@@ -50,7 +50,7 @@ public class ItemRepositoryTest {
     }
 
     @AfterEach
-    void tearsDown(){
+    void tearDown(){
         underTest.deleteAll();
     }
 
