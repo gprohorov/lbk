@@ -8,6 +8,8 @@ package com.example.lbk.controller;
 */
 
 import com.example.lbk.model.Item;
+import com.example.lbk.services.impls.ItemServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -26,9 +28,12 @@ public class ItemController {
             new Item("3","Item2", "desc3", LocalDateTime.now(), null)
     ).collect(Collectors.toList());
 
+    @Autowired
+    ItemServiceImpl service;
+
     @RequestMapping("/getall")
     List<Item> getAll(){
-        return items;
+        return service.getAll();
     }
     @PostMapping("/create")
     Item  createItem(@RequestBody Item item){
