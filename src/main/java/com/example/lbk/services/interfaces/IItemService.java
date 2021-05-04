@@ -12,8 +12,8 @@ import com.example.lbk.model.Item;
 import java.util.List;
 
 public interface IItemService {
-    Item get(String id);
-    Item create(Item item);
+    Item get(String id) throws Exception;
+    Item create(Item item) throws Exception;
     Item update(Item item);
     Item delete(String id);
     List<Item> getAll();

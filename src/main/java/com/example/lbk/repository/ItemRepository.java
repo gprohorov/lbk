@@ -17,5 +17,6 @@ import java.util.List;
 public interface ItemRepository extends MongoRepository<Item, String>{
     Item findFirstByDescription(String  description);
     List<Item> findAllByUpdatedAtNotNull();
+    Boolean findByNameExists(String name);
 
 }
