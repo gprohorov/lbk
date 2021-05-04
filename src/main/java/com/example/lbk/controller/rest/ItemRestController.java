@@ -1,4 +1,4 @@
-package com.example.lbk.controller;
+package com.example.lbk.controller.rest;
 /*
   @author   george
   @project   lbk
@@ -8,7 +8,6 @@ package com.example.lbk.controller;
 */
 
 import com.example.lbk.model.Item;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,14 +22,15 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RestController
-public class ItemController {
+@RequestMapping("/api/items")
+public class ItemRestController {
     private List<Item> items = Stream.of(
             new Item("1","Item1", "desc1", LocalDateTime.now(), null),
             new Item("2","Item2", "desc2", LocalDateTime.now(), null),
             new Item("3","Item2", "desc3", LocalDateTime.now(), null)
     ).collect(Collectors.toList());
 
-    @RequestMapping("/api/items/getall")
+    @RequestMapping("/getall")
     List<Item> getAll(){
         return items;
 
