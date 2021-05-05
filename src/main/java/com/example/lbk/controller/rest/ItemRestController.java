@@ -8,6 +8,8 @@ package com.example.lbk.controller.rest;
 */
 
 import com.example.lbk.model.Item;
+import com.example.lbk.service.ItemServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,27 +26,28 @@ import java.util.stream.Stream;
 @RestController
 @RequestMapping("/api/items")
 public class ItemRestController {
-    private List<Item> items = Stream.of(
-            new Item("1","Item1", "desc1", LocalDateTime.now(), null),
-            new Item("2","Item2", "desc2", LocalDateTime.now(), null),
-            new Item("3","Item2", "desc3", LocalDateTime.now(), null)
-    ).collect(Collectors.toList());
+
+
+    @Autowired
+    ItemServiceImpl service;
 
     @RequestMapping("/getall")
     List<Item> getAll(){
-        return items;
+        return service.getAll();
 
     }
 
-    @RequestMapping("/api/items/getone")
+    @RequestMapping("/getone")
     Item getOne(){
-        return items.get(0);
+
+        return service.getAll().get(0);
     }
-    @PostMapping("/api/items/create")
+
+    @PostMapping("/create")
     Item create(@RequestBody Item item){
         item.setCreatedAt(LocalDateTime.now());
-        items.add(item);
-        return item;
+
+        return service.create(item);
     }
 
 
