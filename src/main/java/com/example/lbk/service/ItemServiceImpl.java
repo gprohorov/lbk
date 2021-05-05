@@ -22,8 +22,10 @@ public class ItemServiceImpl {
     ItemRepository repository;
 
     public List<Item> getAll(){
+
         return repository.findAll();
     }
+
     public Item create(Item item){
         item.setCreatedAt(LocalDateTime.now());
         return repository.save(item);
