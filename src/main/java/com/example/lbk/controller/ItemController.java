@@ -8,6 +8,7 @@ package com.example.lbk.controller;
 */
 
 import com.example.lbk.model.Item;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -26,10 +27,12 @@ public class ItemController {
             new Item("3","Item2", "desc3", LocalDateTime.now(), null)
     ).collect(Collectors.toList());
 
+    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
     @RequestMapping("/getall")
     List<Item> getAll(){
         return items;
     }
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
     Item  createItem(@RequestBody Item item){
          item.setCreatedAt(LocalDateTime.now());
