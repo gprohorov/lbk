@@ -27,12 +27,12 @@ public class ItemController {
             new Item("3","Item2", "desc3", LocalDateTime.now(), null)
     ).collect(Collectors.toList());
 
-    @PreAuthorize("hasAnyRole('ADMIN', 'USER')")
+
     @RequestMapping("/getall")
     List<Item> getAll(){
         return items;
     }
-    @PreAuthorize("hasRole('ADMIN')")
+
     @PostMapping("/create")
     Item  createItem(@RequestBody Item item){
          item.setCreatedAt(LocalDateTime.now());
