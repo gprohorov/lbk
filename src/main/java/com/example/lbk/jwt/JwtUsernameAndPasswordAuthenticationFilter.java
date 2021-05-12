@@ -66,7 +66,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                                             Authentication authResult)
             throws IOException, ServletException {
 
-        String keyString = "1233456778990000w01111111";
+        String keyString = "1233456778990000000000000000000000000000000000000000000000000000000000000";
         SecretKey key = Keys.hmacShaKeyFor(keyString.getBytes());
 
         String token = Jwts.builder()
